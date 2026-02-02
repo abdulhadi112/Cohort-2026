@@ -1,0 +1,84 @@
+Problems faced without GIT:
+- Code tracking
+- Collaboration
+
+- Git ka kaam hai sirf track karna. Ek server jiske through hum collaborate kar sakte hai = Github. Basically a server that is hosting Git. Github is not the only one that can host Git, some other servers are Gitlab, BitBucket, Git Tea, AWS CodeCommit.
+- Technical term for 'server' - VCS Remote / Remote
+- Git is a Version Control System. Code k changes ko track karna is its job
+
+GIT INTERNALS
+- Kaha Store karna hai changes ko : '.git' folder
+- Kab ek change ko record karna hai : 
+  - 'git add <fileName>' (file gets ready to be tracked, isn't saved yet)
+  - 'git commit -m "<message>"' (joh file track hori thi usae save kar liya jaata hai )
+  - 'git diff <commitHash> <commitHash>': Helps us to see the changes that happened between these two commitId
+    - If its just this '+++ b/<fileName>' : A new file was added
+    - If '--- a/<fileName> +++ b/<fileName> : They are some addition & deletion done to this file
+    - The deletion are shown in RED with '-' at beginning & addition are shown in GREEN with '+' in the beginning
+  - 'git log' : Gives us the detail about who made the changes & when the changes were made, with the commit message(description of the task done)
+  - 'git revert <commitHash>' : Creates another commit, jismein previous commit k changes remove hojaate hai
+  - 'git branch' : To check which branch we are currently on (reads the HEAD file in .git )
+  - 'git reset --hard <commitHash>' :
+    - Its a dangerouse command 
+    - One wrong commitHash can permanently delete entire codebase, it cannot be retrieved
+    - '--soft <commitHash>' : Brings the HEAD to commitHash & saare HEAD tak k commit(& changes) ko staging area mein daal deta hai. Just incase if we want to re-commit
+    - 'git reset' : Should ONLY be used when we know what we are doing 
+
+========================= LECTURE 2 : Git Version Control (contd.) =========================   
+Tip: Always leave one line before adding & committing a file 
+  - 'git remote -v' : To check if we have a remote repo
+  - 'git remote add origin <repoUrl>' : Setup a remote repository
+    - 'origin' : name of the remote. so that we dont have to write the url again & again
+  - 'git clone <repoUrl>' : creates a local copy of a remote Git repository. Downloads all files, commit history & branches
+  - 'git push -u origin main' : To Push our code to a remote repository 
+    - 'main' : Branch name
+  - 'git remote set-utl <repoUrl>' : Updates the remote repoUrl 
+  - 'git branch' : How many branches are there 
+  - 'git checkout -b "<branchName>"' : Create a new branch with "branchName" & uspar shift hojaata hai 
+    - '-b' : create a new branch
+    - 'checkout' : This keyword is used to shift between branches. (we can use this command separately).  
+  - 'git checkout <branchName>' : Switches to the branchName 
+  - 'git merge <branchName>' : Merges the branchName to the branch we currently on. (with all the commits joh branchName mein hai)
+  - 'git merge --squash <branchName>' : Applies all the changes from <branchName> to our current branch, but doesn't create a merge commit. Commit command is run to create single commit with all the changes
+    - '--squash' : Keeps the commit history clean by combining many small commits into one
+  - 'git pull' : Sync local with the remote i.e get all the changes done in the remote repo
+  - 'git push --set-upstream origin <branchName>' : Pushes local branch to the remote repo & sets the upstream tracking 
+    - 'git push' : Uploads your local commits to a remote repository.
+    -  '--set-upstream' : Links your local branch with the remote branch, so you don’t have to specify the remote and branch name every time.
+    - 'origin' : default name of the remote repo
+    - 'branchName' : Name of the local  branch we want to track & push remotely
+  - 'git rebase main' : shift the HEAD of the branch to the latest commit 
+  - 'git ' : 
+
+- Git har ek commit ko ID assign karta hai. Each commit k andar Git Extra details ko bhi track karta hai like :
+  - Author 
+  - Date 
+  - Its Parent
+- Commit should be clean & in present tense
+- VS Code also has a Git feature joh overall codebase ko manage karne mein help karta hai. we can add, commit & push the changes.
+- Fork creates a local repo copy on github 
+
+HOW TO CREATE A PULL REQUEST
+- Go to your forked repo, Pull Request section
+- Click 'New Pull Request'
+- The 'head repo' is our forked repo & 'base repo' is the repo we want our code to be merge
+- Add meaningful title, description, give proof via images or videos.
+- click 'Create Pull Request'
+
+Feature complete hone k baad hum merge karne k liye ek aur single commit banaye ge, jiske andar feature branch mein kiye gaye changes hoge. 'Saare changes ko hum ek single commit ke andar 'squash' kardege'. Iska advantage yeh hai ki saare developers isolation mein kaam kar sakte hai without polluting the main branch
+
+Koi branch merge karne se pehele we should be in the 'main' branch & then use 'git merge <branchName>' to merge that branch 
+
+Remote k upar humari new branch exist nhi karti hai. 'git push --set-upstream origin <branchName>' karne se remote par new branch create bhi hojaati hai aur changes push bhi hojaate hai. And agar humari new branch remote par exist karti hai toh we simply use 'git push'
+
+Usually repo ko fork karo. new branch create karo, feature build karo. Pull request create karo to merge your new branch to the MAIN branch of your forked repo. squash & merge karo for less polluting commit history. Then again create a pull request in the main repo to merge the main branch of your forked repo
+
+Humesha MAIN branch par jaakar 'git pull' karna chahiye. Reason: Yeh command changes fetch karti hai & current branch mein merge kar deti hai 
+
+ALWAYS COMMIT WHEN A FEATURE IS BUILD & TESTED. Eg: Auth controller mein sirf register kiya hai toh commit mat karo. Build the entire Auth controller (register, verfiy, forgotPass etc), test it & then commit you changes. 
+In this way you will have meaningful & usefull commits. 
+Benfits of doing this :
+1. Stability : Only tested & working code is saved, reducing the risk of breaking the project
+2. Meaningful history : Each commit represents a complete functional feature
+3. Easier Debugging : Agar koi bug aata bhi hai toh we know kis commit ne usae introduce karn
+4. Better Collaboration : Team members k paas stable, tested feature hote hai
