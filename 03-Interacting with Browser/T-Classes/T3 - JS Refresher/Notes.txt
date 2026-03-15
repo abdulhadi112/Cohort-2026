@@ -1,0 +1,32 @@
+Date : 12/02/26
+- Discussed the history of JS, manuals, where to refer, ECMAScript Specification, Compatibility & why JS
+
+Tips for Commenting :
+- Overall architecture, High-level view (Eg: Iss file mein humne File submission handle kiya, submission aane k baad ek function run hoga that'll do some task)
+- Function usage
+- Important solutions, especially when not immediately obvious
+
+Avoid this :
+- "How the code works" & "What it does"
+- Put them only when the code is not self explanatory or the code cant be broken into more simple form for understanding
+
+Variables :
+- A container where we store our values. Eg let num1 = 10; num1 is variable storing the value 10. Reserved keyword cannot be used as variables eg: for, let, this etc
+- They should be meaningful & should be self-explanatory
+- They are case-sensitive. Eg: `num1` & `Num1` are 2 different variables
+- They must start with character, $ or _ only
+- Variables initialized with 'let' can be re-assigned  but can't be re-assigned when initialized with 'const'
+- In case of 'const' variable must be declare & initialized at the same time
+
+Datatypes :
+- There are 8 basic datatypes in JS
+- 7 Primitive :
+  - numbers for numbers of any kind : integer or floating-point
+  - bigint : integer numbers of arbitrary length Eg: bigint num = 1234567890723683572
+  - string : for strings. There is no separate single character type in JS
+  - boolean : true/false
+  - null : 
+  - undefined : for unassigned values
+  - Symbol : for unique identifiers
+- 1 Non-Primitive :
+  - Object :  for more complex data structure Eg: array

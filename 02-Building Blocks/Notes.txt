@@ -1,0 +1,84 @@
+Date : 24/1/26
+LECTURE : Chai Aur HTML
+
+- Got to know about Accessbility features, why is it important to include it & what are the consequences if not done properly
+
+Browser par jab hum ek website open karte hai toh hota kya hai (these are optional, depth mein tabh hi jao if you are building your Browser)
+
+BROWSER COMPONENTS :
+1. Browser Engines : Gecko(firefox), Blink(Google Chrome), Webkit(Apple)
+2. Rendering Engine : 
+3. Networking : Browser jitni bhi request send & receives uske liye ek separate component hota hai. The 'Networking Tab' in Dev Tools
+4. JS Interpreter : Circus of JS 
+5. UI Backend : 
+6. Disk API : 
+
+FLOW AFTER HITTING URL
+1. HTML
+
+Parsing : Analyzing & converting a program into a internal format that a runtime environment can actually run. Eg: Browser parses HTML into DOM Tree
+Jabhi bhi Parsing jogi toh ek tree banta hai 
+
+CSS ka Object Model (CSSOM) CSS k tree se banta hai 
+HTML -> HTML PARSER --> CONTENT SINK
+CSS -> CSS PARSER   --> CONTENT SINK
+
+HTML PARSER : Browser HTML ko tree mein convert karta hai joh woh(runtime environment) samjh sake.
+CSS PARSER : Similar to HTML, iss case mein CSS ka tree banta hai
+Content Sink : Internal browser component that acts as a destination or storage area for the parsed content.
+
+http ka kaam : User ne joh maanga hai, usko woh transfer kardo
+http a protocol capable of transfering Hypertext
+Problems that were treid to solved by HTML:
+1. Good Looking Text
+2. Structured format 
+3. Capability of linking pages easily(hyperlinks)
+
+Server humein Text response hi bhejta hai bas Headers mein "Content-Type : text/html". Jabh browser ko yeh cheez mil jaati hai, toh joh bhi usae text mila woh usae as HTML parse karna suru kardeta hai 
+Joh Server humein HTML return karta hai = Web Server
+
+================================= LECTURE : Chai Aur CSS =================================
+Topics not to discuss in next 6 months
+- Multi process architecture
+- Render Engine
+- Networking Layer (jaha bhi ek Networking layer lag jaye waha ek alag padhayi hoti hai)
+- Resource loading (QUIC, http3 etc)
+- Modern features (web worker, web assembly, PWA) (interesting topics to discuss)
+
+CSS (Cascading Stylesheets)
+- Cascading : According to AI, agar ek hi element par multiple CSS rules lag rahi hain, to browser decide karta hai kaunsa rule zyada important hai aur wahi apply hota hai.
+(apni marzi se specific property ko manipulate kar sakte hai, toh utni cheez overwrite hoti hai & baaki inherit hojaati hai)
+
+Browser Default Style = User Agent Style
+
+Ways to write CSS :
+1. Inline CSS
+- Jaha par humara HTML tag wahi par CSS likhdo
+- <h1 style="background-color: #3a3a3a; color:#fff">Chai Aur CSS</h1>
+
+2. Internal CSS:
+- CSS is written inside the same HTML file but separately
+- Eg :
+<head>
+<style>
+  h1{
+    background-color: #3a3a3a; 
+    color:#fff
+  }
+</style>
+</head>
+
+3. External CSS
+- Written in a separate file & linked to the html file via link tag
+- Eg:
+  h1{
+    background-color: #3a3a3a; 
+    color:#fff
+  } 
+
+Cascading depends on Line & specificity
+Priority : Inline > ID > Class > Tag
+
+Bootstrap mein we get ready made components(not atomic css). Tailwind CSS(a library) uses atomic css. Shadcn has components that uses Tailwind classes for styling 
+
+Color selection for design tip : You never go wrong with Black & White + one company color
