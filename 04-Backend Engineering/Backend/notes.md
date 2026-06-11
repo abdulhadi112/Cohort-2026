@@ -2,12 +2,12 @@ Lecture 1 : Intro to Backend Engineering
 
 - Covering HTTP methods & intro to TS
 
-What are HTTP Methods(HTTP Verbs)
+# What are HTTP Methods(HTTP Verbs)
 
 - standardized request types that tell a server what action to perform on a specific resource
 - Eg: GET method is used to read/retrieve resource from the server.
 
-Types :
+## Types :
 
 1. GET
 
@@ -55,7 +55,7 @@ Jabh humare kaam backend se hojaata hai toh we send a response. Depend karta hai
 
 `node --watch chai.js` : '--watch' se humari file continuously monitor hoti hai for changes. If there are any changes, the changes are shown automatically whenever we save
 
-TYPESCRIPT
+# TYPESCRIPT
 
 - Nothing but JS with types
 - Cannot be used alone
@@ -66,7 +66,7 @@ TYPESCRIPT
 - One more benefit is since we know the datatype we can access functions of that class as well (suggestions mein milte hai)
 - Improves overall DX & helps fix errors early
 
-NODEJS
+## NODEJS
 
 - Is a runtime that allows us to JS locally
 - it is also called "JS on the server". One of the reason ki JS server par pehli baar aayi is 'Nodejs'
@@ -78,19 +78,19 @@ NODEJS
   - path : Helps handle & transform file path. It makes sure your folder paths work correctly across different operating systems
   - os : Provides information about your computer's operating system, such as free memory, CPU details, uptime, and system architecture
 
-V8 Engine
+## V8 Engine
 
 - V8 Engine converts the JS code into Machine code (this process is known as JIT(Just In Time) compilation)
 - JS is an interpreted language. Interpreted language cannot be compiled. Compiled languages (Java, C++) are fast (they check if there are any errors in the code, Agar hote hai toh woh user ko peheli hi bata deti hai ) as compared to Interpreted Languages which are slow (ismein saari checking runtime par hoti hai)
 - V8 Engine manages the memory (heap & stack). V8 Engine doesn't know anything about Files, network or timers
 
-LIBUV
+## LIBUV
 
 - It is a pure C library
 - Gives us the Event Loop, Thread Pool & OS layer par joh kaam karna rahta woh bhi yehi se milta hai, DNS Lookups etc
 - We get the background threads from Libuv (that help in execution)
 
-Nodejs Bindings
+## Nodejs Bindings
 
 - This allows JS to communicate & overall help in performing low-level operations. Low-level Operations: reading a file or opening a network socket etc.
 - JS does not have the ability to do the low0level operations. Nodejs handles these task by using libraries written in C/C++.

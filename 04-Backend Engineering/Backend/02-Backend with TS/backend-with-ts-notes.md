@@ -89,3 +89,22 @@ Installing express
 - In 'src/validation/todo.schema.ts' : Humne schema banya ki humara Todo kaise dikhega, usae validate bhi kara & uski typing based on the schema bhi bana li. Typing will help us when we make our controllers.
   - How is it useful :
     1. Validation : Ensures that the Todo matches the expected structure before processing or storing it
+
+# The `env.ts`
+
+- This file helps validate & normalize environment variables at startup using Zod(a runtime schema validation library)
+- What it does :
+  - Checks all the environment variables against a set of rules defined by zod
+  - It checks if they actually exist & are of correct type(eg: PORT is valid number, DB_URL is a valid link)
+- `Zod`: A Runtime schema validation library that lets us define what shape/types we expect from the env file & validate it
+- `envSchema` : This is where we define the shape of the env.
+  - `z.object({ })`: It expects an object with the following keys
+  - Like PORT must be a string & if it is undefined Zod will set it to "3000" in the parsed output.
+- `createEnv` : It takes raw env variables, validates them against the predefined Zod schema(i.e envSchema) & exports a clean, type-safe object to use across our application
+  - `envSchema` : The schema we defined earlier. Holds the rules of how our environment variables should look like.
+  - `safeParse()` : A crucial Zod method. Instead of throwing loud, disruptive code error if the validation fails, safeParse quietly runs the check & returns a neat object containing the results
+  - `safeParseResult.success` : Zod's safeParse object always includes a boolean '.success' property.
+    - If false, it means your .env file is missing a required variable, or a variable failed a type check
+    - If true, it returns safeParseResult.data which contains finalized & validated data.
+  - `throw new Error()` : The application intentionally crashes right here during startup. It stops execution and prints out Zod's detailed error message, telling us exactly which env variable is broken & why
+- `export ...` : By using export, we can import this clean env OBJECT into any other file of our backend (eg: import {env} from "./env"). We can directly use `env.PORT` instead of process.env.PORT
